@@ -4,9 +4,8 @@ using System.Text;
 
 namespace RBlog.DATA.Entities
 {
-    public class Post
+    public class Post : BaseClass
     {
-        public int PostId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
     }
