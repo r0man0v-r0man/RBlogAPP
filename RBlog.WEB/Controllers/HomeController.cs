@@ -4,26 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RBlog.Service.Interfaces;
 using RBlog.WEB.Models;
 
 namespace RBlog.WEB.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IPostService postService;
+        public HomeController(IPostService postService)
+        {
+            this.postService = postService;
+        }
         public IActionResult Index()
         {
+            postService.InsertPost(new DATA.Entities.Post { Title = "trtrtrtrt" });
+            ViewBag.Test1 = "test OK";
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
