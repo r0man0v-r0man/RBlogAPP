@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 namespace RBlog.Repository
 {
@@ -8,7 +9,7 @@ namespace RBlog.Repository
         protected IConfigurationRoot GetConfiguration()
         {
             return new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
         }
