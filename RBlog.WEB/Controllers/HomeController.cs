@@ -18,8 +18,7 @@ namespace RBlog.WEB.Controllers
         }
         public IActionResult Index()
         {
-            postService.InsertPost(new DATA.Entities.Post(){ Title = "trtrtrtrt" , Description = "123"});
-            ViewBag.Test1 = "test OK";
+            ViewBag.Test1 = "test1";
             return View();
         }
     }

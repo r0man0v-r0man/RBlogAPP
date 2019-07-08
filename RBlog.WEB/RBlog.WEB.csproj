@@ -16,4 +16,9 @@
     <ProjectReference Include="..\RBlog.Service\RBlog.Service.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
