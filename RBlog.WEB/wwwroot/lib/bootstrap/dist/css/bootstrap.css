@@ -4175,7 +4175,8 @@ input[type="button"].btn-block {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: inherit;
   white-space: nowrap;
 }

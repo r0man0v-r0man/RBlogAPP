@@ -18,7 +18,6 @@ namespace RBlog.WEB.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Test1 = "test1";
             return View();
         }
     }
