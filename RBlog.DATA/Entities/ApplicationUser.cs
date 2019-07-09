@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-
-namespace RBlog.Repository.Identity
+namespace RBlog.DATA.Entities
 {
     public class ApplicationUser : IdentityUser
     {

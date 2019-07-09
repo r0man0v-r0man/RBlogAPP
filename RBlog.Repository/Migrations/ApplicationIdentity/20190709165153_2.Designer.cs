@@ -10,14 +10,14 @@ using RBlog.Repository.Identity;
 namespace RBlog.Repository.Migrations.ApplicationIdentity
 {
     [DbContext(typeof(ApplicationIdentityContext))]
-    [Migration("20190707211258_initIdentity")]
-    partial class initIdentity
+    [Migration("20190709165153_2")]
+    partial class _2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -131,7 +131,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RBlog.Repository.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("RBlog.DATA.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -192,7 +192,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RBlog.Repository.Identity.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -200,7 +200,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RBlog.Repository.Identity.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -213,7 +213,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RBlog.Repository.Identity.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -221,7 +221,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("RBlog.Repository.Identity.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

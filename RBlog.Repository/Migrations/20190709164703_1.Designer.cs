@@ -10,14 +10,14 @@ using RBlog.Repository.Data;
 namespace RBlog.Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190707211139_init2")]
-    partial class init2
+    [Migration("20190709164703_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
