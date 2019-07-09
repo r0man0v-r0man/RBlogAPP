@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RBlog.Repository.Identity;
+using RBlog.Repository.Data;
 
-namespace RBlog.Repository.Migrations.ApplicationIdentity
+namespace RBlog.Repository.Migrations
 {
-    [DbContext(typeof(ApplicationIdentityContext))]
-    [Migration("20190709165153_2")]
-    partial class _2
+    [DbContext(typeof(DataContext))]
+    [Migration("20190709200715_again test")]
+    partial class againtest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,7 +131,30 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RBlog.DATA.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("RBlog.DATA.Entities.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("RBlog.DATA.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -192,7 +215,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -200,7 +223,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -213,7 +236,7 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -221,10 +244,17 @@ namespace RBlog.Repository.Migrations.ApplicationIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("RBlog.DATA.Entities.ApplicationUser")
+                    b.HasOne("RBlog.DATA.Entities.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RBlog.DATA.Entities.Post", b =>
+                {
+                    b.HasOne("RBlog.DATA.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

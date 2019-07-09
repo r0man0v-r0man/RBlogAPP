@@ -11,7 +11,10 @@ namespace RBlog.Repository.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            builder.HasKey(p => p.Id);
+            builder
+                .HasOne(c => c.User)
+                .WithMany(p => p.Posts)
+                .HasForeignKey(c => c.UserId);
         }
     }
 }

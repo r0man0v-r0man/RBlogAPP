@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using RBlog.DATA.Entities;
 using RBlog.Repository;
 using RBlog.Repository.Data;
-using RBlog.Repository.Identity;
 using RBlog.Service;
 using RBlog.Service.Interfaces;
 using System;
@@ -22,10 +21,8 @@ namespace RBlog.WEB
         {
             serviceCollection.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(dataConnectionString ?? GetDataConnectionStringFromConfig()));
-            serviceCollection.AddDbContext<ApplicationIdentityContext>(options =>
-                options.UseSqlServer(authConnectionString ?? GetAuthConnectionStringFromConfig()));
-            serviceCollection.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationIdentityContext>();
+            serviceCollection.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>();
         }
         public static void AddRepository(this IServiceCollection serviceCollection)
         {
@@ -35,12 +32,6 @@ namespace RBlog.WEB
         {
             serviceCollection.AddTransient<IPostService, PostService>();
         }
-
-        private static string GetAuthConnectionStringFromConfig()
-        {
-            return new DataBaseConfiguration().GetAuthConnectionString();
-        }
-
         private static string GetDataConnectionStringFromConfig()
         {
             return new DataBaseConfiguration().GetDataConnectionString();
