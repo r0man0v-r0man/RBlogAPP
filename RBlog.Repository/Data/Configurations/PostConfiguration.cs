@@ -14,7 +14,8 @@ namespace RBlog.Repository.Data.Configurations
             builder
                 .HasOne(c => c.User)
                 .WithMany(p => p.Posts)
-                .HasForeignKey(c => c.UserId);
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
